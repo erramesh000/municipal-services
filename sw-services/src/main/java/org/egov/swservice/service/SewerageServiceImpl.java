@@ -90,7 +90,12 @@ public class SewerageServiceImpl implements SewerageService {
 	public List<SewerageConnection> createSewerageConnection(SewerageConnectionRequest sewerageConnectionRequest, Boolean isMigration) {
 		int reqType = SWConstants.CREATE_APPLICATION;
 		if (sewerageServicesUtil.isModifyConnectionRequest(sewerageConnectionRequest) && !isMigration) {
-			List<SewerageConnection> sewerageConnectionList = getAllSewerageApplications(sewerageConnectionRequest);
+			List<SewerageConnection> sewerageConnectionList = getAllSewerageApplications(sewerageConnectionRequest);                       
+			if (sewerageConnectionList.size()>0) {
+				for(SewerageConnection previousConnectionsListObj: sewerageConnectionList) {
+				sewerageDaoImpl.updateSewerageConnection(previousConnectionsListObj.getId(), SWConstants.INACTIVE_STATUS);
+				}
+			}
 			if (!CollectionUtils.isEmpty(sewerageConnectionList)) {
 				workflowService.validateInProgressWF(sewerageConnectionList, sewerageConnectionRequest.getRequestInfo(),
 						sewerageConnectionRequest.getSewerageConnection().getTenantId());
