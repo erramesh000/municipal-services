@@ -93,7 +93,7 @@ public class SewerageServiceImpl implements SewerageService {
 			List<SewerageConnection> sewerageConnectionList = getAllSewerageApplications(sewerageConnectionRequest);                       
 			if (sewerageConnectionList.size()>0) {
 				for(SewerageConnection previousConnectionsListObj: sewerageConnectionList) {
-				sewerageDaoImpl.updateSewerageConnection(previousConnectionsListObj.getId(), SWConstants.INACTIVE_STATUS);
+				sewerageDaoImpl.updateSewerageApplicationStatus(previousConnectionsListObj.getId(), SWConstants.INACTIVE_STATUS);
 				}
 			}
 			if (!CollectionUtils.isEmpty(sewerageConnectionList)) {
