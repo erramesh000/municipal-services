@@ -53,6 +53,10 @@ public class Configurations {
 	@Value("${egov.assessmentservice.update.endpoint}")
 	private String	assessmentUpdateEndpoint;
 	
+	@Value("${egov.assessmentservice.cancel.endpoint}")
+	private String	assessmentCancelEndpoint;
+	
+	
 	// billing service
 	@Value("${egov.billingservice.host}")
 	private String billingServiceHost;

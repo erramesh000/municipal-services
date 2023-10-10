@@ -43,6 +43,8 @@ public class AssessmentRepository {
 	private static final String PROPERTY_SEARCH_QUERY = "select distinct prop.id,prop.propertyid,prop.acknowldgementNumber,prop.propertytype,prop.status,prop.ownershipcategory,prop.oldPropertyId,prop.createdby,prop.createdTime,prop.lastmodifiedby,prop.lastmodifiedtime,prop.tenantid from eg_pt_property prop inner join eg_pt_address addr ON prop.id = addr.propertyid and prop.tenantid=addr.tenantid left join eg_pt_unit unit ON prop.id = unit.propertyid and prop.tenantid=addr.tenantid where prop.status='ACTIVE' ";
 
 	private static final String ASSESSMENT_SEARCH_QUERY = "select id,assessmentnumber from eg_pt_asmt_assessment where status='ACTIVE' and propertyid=:propertyid and financialyear=:financialyear and tenantid=:tenantid";
+	private static final String ASSESSMENT_SEARCH_QUERY_FOR_CANCEL = "select assessmentnumber from eg_pt_asmt_assessment where status='ACTIVE' and propertyid=:propertyid and financialyear=:financialyear and tenantid=:tenantid";
+	
 
 	private static final String ASSESSMENT_DETAIL_SEARCH_QUERY = "SELECT asmt.id as ass_assessmentid, asmt.financialyear as ass_financialyear, asmt.tenantId as ass_tenantid, asmt.assessmentNumber as ass_assessmentnumber, "
 			+ "asmt.status as ass_status, asmt.propertyId as ass_propertyid, asmt.source as ass_source, asmt.assessmentDate as ass_assessmentdate,  "
@@ -58,6 +60,8 @@ public class AssessmentRepository {
 	
 	
 	private static final String ASSESSMENT_JOB_DATA_INSERT_QUERY = "Insert into eg_pt_assessment_job (id,assessmentnumber,propertyid,financialyear,createdtime,status,error,additionaldetails,tenantid) values(:id,:assessmentnumber,:propertyid,:financialyear,:createdtime,:status,:error,:additionaldetails,:tenantid)";;
+	//private static final String CANCEL_ASSESSMENT_JOB_DATA_INSERT_QUERY = "Insert into eg_pt_assessment_job (id,assessmentnumber,propertyid,financialyear,createdtime,status,error,additionaldetails,tenantid) values(:id,:assessmentnumber,:propertyid,:financialyear,:createdtime,:status,:error,:additionaldetails,:tenantid)";;
+	
 
 	private static final String OCUUPANCY_TYPE_RENTED = "RENTED";
 	
@@ -247,6 +251,28 @@ public class AssessmentRepository {
 		else
 			return true;
 	}
+	
+	
+	
+	public boolean isAssessmentExistsForCancellation(String propertyId, String assessmentYear, String tenantId) {
+		StringBuilder query = new StringBuilder(ASSESSMENT_SEARCH_QUERY_FOR_CANCEL);
+		final Map<String, Object> params = new HashMap<>();
+		params.put("propertyid", propertyId);
+		params.put("financialyear", assessmentYear);
+		params.put("tenantid", tenantId);
+		List<String> assessmentIds = new ArrayList<>();
+		try {
+			assessmentIds = namedParameterJdbcTemplate.queryForList(query.toString(), params, String.class);
+		} catch (final DataAccessException e) {
+
+		}
+
+		if (assessmentIds.isEmpty())
+			return false;
+		else
+			return true;
+	}
+	
 	
 	
 	public void saveAssessmentGenerationDetails(Assessment assessment, String status, String additionalDetails,String error) {

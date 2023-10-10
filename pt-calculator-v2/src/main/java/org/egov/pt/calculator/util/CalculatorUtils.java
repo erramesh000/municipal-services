@@ -853,6 +853,18 @@ public class CalculatorUtils {
 		return MdmsCriteriaReq.builder().requestInfo(requestInfo).mdmsCriteria(mdmsCriteria).build();
 	}
 	
+	public MdmsCriteriaReq getCancelAssessmentConfigRequest(RequestInfo requestInfo, String tenantId) {
+
+		MasterDetail mstrDetail = MasterDetail.builder().name(CalculatorConstants.CANCEL_ASSESSMENT_CONFIG_MASTER)
+				.filter("[?(@.enabled==true)]")
+				.build();
+		ModuleDetail moduleDetail = ModuleDetail.builder().moduleName("tenant")
+				.masterDetails(Arrays.asList(mstrDetail)).build();
+		MdmsCriteria mdmsCriteria = MdmsCriteria.builder().moduleDetails(Arrays.asList(moduleDetail)).tenantId(tenantId)
+				.build();
+		return MdmsCriteriaReq.builder().requestInfo(requestInfo).mdmsCriteria(mdmsCriteria).build();
+	}
+	
 	public MdmsCriteriaReq getDefaultersConfigRequest(RequestInfo requestInfo, String tenantId) {
 
 		MasterDetail mstrDetail = MasterDetail.builder().name(CalculatorConstants.DEFAULTERS_CONFIG_MASTER)

@@ -341,6 +341,8 @@ public class CalculatorConstants {
 	public static final String ASSESSMENT_CONFIG_MASTER = "assessmentconfig";
 	
 	public static final String RE_ASSESSMENT_CONFIG_MASTER = "reassessmentconfig";
+	
+	public static final String CANCEL_ASSESSMENT_CONFIG_MASTER = "cancelassessmentconfig";
 
 	public static final String MODULE_TENANT = "tenant";
 	
@@ -349,6 +351,8 @@ public class CalculatorConstants {
 	public static final String MDMS_ASSESSMENT_JOB_CONFIG_PATH = "$.MdmsRes.tenant.assessmentconfig[?(@.enabled==true)]";
 	
 	public static final String MDMS_RE_ASSESSMENT_JOB_CONFIG_PATH = "$.MdmsRes.tenant.reassessmentconfig";
+	
+	public static final String MDMS_CANCEL_ASSESSMENT_JOB_CONFIG_PATH = "$.MdmsRes.tenant.cancelassessmentconfig[?(@.enabled==true)]";
 
 
 	public static final String FINANCIALYEAR_KEY = "financialyear";
