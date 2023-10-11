@@ -219,6 +219,15 @@ public class SWCalculationServiceImpl implements SWCalculationService {
 		tenantIds.add("pb.sultanpurlodhi");
 		tenantIds.add("pb.shahkot");
 		tenantIds.add("pb.khanna");
+		tenantIds.add("pb.kartarpur");
+		tenantIds.add("pb.machhiwara");
+		tenantIds.add("pb.mahilpur");
+		tenantIds.add("pb.raikot");
+		tenantIds.add("pb.ramdass");
+		tenantIds.add("pb.bhulath");
+		tenantIds.add("pb.bhogpur");
+
+		
 		
 		if (tenantIds.isEmpty())
 			return;
