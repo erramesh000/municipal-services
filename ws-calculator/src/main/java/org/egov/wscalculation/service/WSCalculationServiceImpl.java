@@ -328,7 +328,8 @@ public class WSCalculationServiceImpl implements WSCalculationService {
 		tenantIds.add("pb.bhawanigarh");
 		tenantIds.add("pb.balachaur");
 		tenantIds.add("pb.talwara");
-		
+		tenantIds.add("pb.jalandhar");
+		tenantIds.add("pb.khanna");
 
 		
 
