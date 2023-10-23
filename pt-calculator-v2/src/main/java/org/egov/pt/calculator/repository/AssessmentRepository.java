@@ -43,6 +43,8 @@ public class AssessmentRepository {
 	private static final String PROPERTY_SEARCH_QUERY = "select distinct prop.id,prop.propertyid,prop.acknowldgementNumber,prop.propertytype,prop.status,prop.ownershipcategory,prop.oldPropertyId,prop.createdby,prop.createdTime,prop.lastmodifiedby,prop.lastmodifiedtime,prop.tenantid from eg_pt_property prop inner join eg_pt_address addr ON prop.id = addr.propertyid and prop.tenantid=addr.tenantid left join eg_pt_unit unit ON prop.id = unit.propertyid and prop.tenantid=addr.tenantid where prop.status='ACTIVE' ";
 
 	private static final String ASSESSMENT_SEARCH_QUERY = "select id,assessmentnumber from eg_pt_asmt_assessment where status='ACTIVE' and propertyid=:propertyid and financialyear=:financialyear and tenantid=:tenantid";
+	private static final String ASSESSMENT_SEARCH_QUERY_ID = "select id from eg_pt_asmt_assessment where status='ACTIVE' and propertyid=:propertyid and financialyear=:financialyear and tenantid=:tenantid";
+	
 	private static final String ASSESSMENT_SEARCH_QUERY_FOR_CANCEL = "select assessmentnumber from eg_pt_asmt_assessment where status='ACTIVE' and propertyid=:propertyid and financialyear=:financialyear and tenantid=:tenantid";
 	
 
@@ -234,7 +236,7 @@ public class AssessmentRepository {
 	}
 	
 	public boolean isAssessmentExists(String propertyId, String assessmentYear, String tenantId) {
-		StringBuilder query = new StringBuilder(ASSESSMENT_SEARCH_QUERY);
+		StringBuilder query = new StringBuilder(ASSESSMENT_SEARCH_QUERY_ID);
 		final Map<String, Object> params = new HashMap<>();
 		params.put("propertyid", propertyId);
 		params.put("financialyear", assessmentYear);
