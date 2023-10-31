@@ -1098,6 +1098,8 @@ public class DemandService {
 			return true;
 		} else if (billingFrequency.equalsIgnoreCase(WSCalculationConstant.Quaterly_Billing_Period)) {
 			return true;
+		}else if (billingFrequency.equalsIgnoreCase(WSCalculationConstant.Annual_Billing_Period)) {
+			return true;
 		}
 		return true;
 	}
