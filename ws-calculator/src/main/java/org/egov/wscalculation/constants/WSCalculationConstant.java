@@ -161,6 +161,8 @@ public class WSCalculationConstant {
 
 	public static final String Monthly_Billing_Period = "monthly";
 
+        public static final String Annual_Billing_Period = "annualy";
+
 	public static final String Billing_Cycle_String = "billingCycle";
 
 	public static final String Demand_End_Date_String = "demandEndDateMillis";
