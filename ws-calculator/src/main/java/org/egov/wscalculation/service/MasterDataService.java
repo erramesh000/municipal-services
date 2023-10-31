@@ -222,7 +222,12 @@ public class MasterDataService {
 //				estimationService.getQuarterStartAndEndDate(billingPeriod);
 				billingPeriod.put(WSCalculationConstant.STARTING_DATE_APPLICABLES, criteria.getFrom());
 				billingPeriod.put(WSCalculationConstant.ENDING_DATE_APPLICABLES, criteria.getTo());
-			} else {
+			} else if (WSCalculationConstant.Annual_Billing_Period
+					.equalsIgnoreCase(master.get(WSCalculationConstant.Billing_Cycle_String).toString())) {
+//				estimationService.getQuarterStartAndEndDate(billingPeriod);
+				billingPeriod.put(WSCalculationConstant.STARTING_DATE_APPLICABLES, criteria.getFrom());
+				billingPeriod.put(WSCalculationConstant.ENDING_DATE_APPLICABLES, criteria.getTo());
+			}  else {
 				LocalDateTime demandEndDate = LocalDateTime.now();
 				demandEndDate = setCurrentDateValueToStartingOfDay(demandEndDate);
 				Long endDaysMillis = (Long) master.get(WSCalculationConstant.Demand_End_Date_String);
