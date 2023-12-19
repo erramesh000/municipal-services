@@ -42,6 +42,8 @@ public class TradeLicenseSearchCriteria {
     @JsonIgnore
     private String accountId;
 
+    @JsonProperty("name")
+    private String name;
 
     @JsonProperty("fromDate")
     private Long fromDate = null;
@@ -75,7 +77,7 @@ public class TradeLicenseSearchCriteria {
     public boolean tenantIdOnly() {
         return (this.tenantId != null && this.status == null && this.applicationType == null && this.ids == null && this.applicationNumber == null
                 && this.licenseNumbers == null && this.oldLicenseNumber == null && this.mobileNumber == null &&
-                this.fromDate == null && this.toDate == null && this.ownerIds == null
+                this.fromDate == null && this.toDate == null && this.ownerIds == null && this.name==null
         );
     }
 
