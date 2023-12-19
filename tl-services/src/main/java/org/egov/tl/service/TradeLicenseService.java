@@ -213,7 +213,7 @@ public class TradeLicenseService {
         tlValidator.validateSearch(requestInfo, criteria, serviceFromPath,isInterServiceCall);
         criteria.setBusinessService(serviceFromPath);
         enrichmentService.enrichSearchCriteriaWithAccountId(requestInfo, criteria);
-        if (criteria.getMobileNumber() != null) {
+        if (criteria.getMobileNumber() != null  || criteria.getName() != null ) {
             licenses = getLicensesFromMobileNumber(criteria, requestInfo);
         } else {
             licenses = getLicensesWithOwnerInfo(criteria, requestInfo);
