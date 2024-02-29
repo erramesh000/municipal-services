@@ -261,10 +261,10 @@ public class TLValidator {
                     Long existingFromDate = searchObj.getValidFrom();
                     Long existingToDate = searchObj.getValidTo();
                        ///////////////////////////////////Temporary fix renewal for 2024-25 as frontend payload was not giving correct FY 2024-25 epoch 
-                    if(currentToDate <= existingToDate && currentToDate==1708592070000)
+                    if(currentToDate <= existingToDate && currentToDate==1708592070000L)
                     {
-                    	license.setValidTo(1743411270000);   //TEMPORARY URGENCY FIX FOR RENEWAL 2024-25
-                    	license.setValidFrom(1708592070000);  //TEMPORARY URGENCY FIX FOR RENEWAL 2024-25
+                    	license.setValidTo(1743411270000L);   //TEMPORARY URGENCY FIX FOR RENEWAL 2024-25
+                    	license.setValidFrom(1708592070000L);  //TEMPORARY URGENCY FIX FOR RENEWAL 2024-25
                     }
                     //////// TEMP FIX END HERE (TO UNDO THIS FIX, REMOVE ABOVE CODE)
                     
